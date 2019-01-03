@@ -56,6 +56,22 @@ class PrimeNumberAggregate implements \ArrayAccess, \Iterator
         return $clone;
     }
 
+    public function each(Closure $closure) : void
+    {
+        array_walk($this->numbers, $closure);
+    }
+
+    public function eachValid(Closure $closure) : void
+    {
+        array_walk($this->numbers, function(PrimeNumberInterface $primeNumber) use($closure)
+        {
+            if($primeNumber !== \PrimeNumbers\PrimeNumber::$NULL)
+            {
+                $closure($primeNumber);
+            }
+        });
+    }
+
     public function offsetSet($offset, $value)
     {
         trigger_error("Not supported");

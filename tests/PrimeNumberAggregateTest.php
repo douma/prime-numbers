@@ -59,4 +59,45 @@ final class PrimeNumberAggregateTest extends TestCase
             \PrimeNumbers\PrimeNumber::fromNumber(5)
         ]), $list);
     }
+
+    public function test_each()
+    {
+        $instance = \PrimeNumbers\PrimeNumberAggregate::until(10);
+        $invalid = \PrimeNumbers\PrimeNumber::fromNumber(12);
+        $instance = $instance->with($invalid);
+
+        $append = [];
+        $instance->each(function(\PrimeNumbers\Contracts\PrimeNumberInterface $primeNumber) use(&$append)
+        {
+            $append[] = $primeNumber;
+        });
+
+        $this->assertEquals([
+            \PrimeNumbers\PrimeNumber::fromNumber(2),
+            \PrimeNumbers\PrimeNumber::fromNumber(3),
+            \PrimeNumbers\PrimeNumber::fromNumber(5),
+            \PrimeNumbers\PrimeNumber::fromNumber(7),
+            \PrimeNumbers\PrimeNumber::$NULL
+        ], $append);
+    }
+
+    public function test_eachValid()
+    {
+        $instance = \PrimeNumbers\PrimeNumberAggregate::until(10);
+        $invalid = \PrimeNumbers\PrimeNumber::fromNumber(12);
+        $instance = $instance->with($invalid);
+
+        $append = [];
+        $instance->eachValid(function(\PrimeNumbers\Contracts\PrimeNumberInterface $primeNumber) use(&$append)
+        {
+            $append[] = $primeNumber;
+        });
+
+        $this->assertEquals([
+            \PrimeNumbers\PrimeNumber::fromNumber(2),
+            \PrimeNumbers\PrimeNumber::fromNumber(3),
+            \PrimeNumbers\PrimeNumber::fromNumber(5),
+            \PrimeNumbers\PrimeNumber::fromNumber(7),
+        ], $append);
+    }
 }

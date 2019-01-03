@@ -129,3 +129,34 @@ $removedInvalid = PrimeNumberAggregate::from([
     PrimeNumber::fromNumber(7)
 ];
 ~~~
+
+## Looping 
+
+~~~php
+foreach($list as $primeNumber)
+{
+    if($primeNumber !== PrimeNumber::$NULL)
+    {
+        echo $primeNumber->getNumber();
+    }
+}
+~~~
+
+~~~php
+$list->each(function(PrimeNumberInterface $primeNumber)
+{
+    if($primeNumber !== PrimeNumber::$NULL)
+    {
+        echo $primeNumber->getNumber();
+    }
+});
+~~~
+
+Or by using, `eachValid`: 
+
+~~~php
+$list->eachValid(function(PrimeNumberInterface $primeNumber)
+{
+    echo $primeNumber->getNumber();
+});
+~~~
