@@ -142,6 +142,8 @@ foreach($list as $primeNumber)
 }
 ~~~
 
+Or by using `each`: 
+
 ~~~php
 $list->each(function(PrimeNumberInterface $primeNumber)
 {
