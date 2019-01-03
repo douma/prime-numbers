@@ -31,5 +31,7 @@ final class PrimeNumberTest extends TestCase
         $this->assertEquals(5, \PrimeNumbers\PrimeNumber::fromNumber(5)->getNumber());
         $this->assertEquals(7, \PrimeNumbers\PrimeNumber::fromNumber(7)->getNumber());
         $this->assertEquals(11, \PrimeNumbers\PrimeNumber::fromNumber(11)->getNumber());
+        $this->assertEquals(2246502809, \PrimeNumbers\PrimeNumber::fromNumber(2246502809)->getNumber());
+        $this->assertEquals(22464972617, \PrimeNumbers\PrimeNumber::fromNumber(22464972617)->getNumber());
     }
 }
