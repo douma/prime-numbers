@@ -1,19 +1,27 @@
-# Prime numbers
+# Prime Numbers
 
 ## Lists
 
+A list of prime numbers can be generated with the `until` function. 
+
 ~~~php
-$instance = \PrimeNumbers\PrimeNumberAggregate::until(10); //2,3,5,7
-$filtered = $list = $instance->filter(function(\PrimeNumbers\Contracts\PrimeNumberInterface $number)
+use PrimeNumbers\Contracts\PrimeNumberInterface;
+use PrimeNumbers\{PrimeNumber, PrimeNumberAggregate};
+
+//2,3,5,7
+$instance = PrimeNumberAggregate::until(10); 
+
+//2,3,5
+$filtered = $list = $instance->filter(function(PrimeNumberInterface $number)
 {
     return ($number->getNumber() < 7);
-}); //2,3,5
+}); 
 ~~~
 
 ## Prime numbers
 
 ~~~php
-$primeNumber = \PrimeNumbers\PrimeNumber::fromNumber(3);
+$primeNumber = PrimeNumber::fromNumber(3);
 ~~~
 
 ## Invalid prime numbers
@@ -22,11 +30,11 @@ Invalid prime numbers do not result in an `Exception`. Instead
 a `NullObject` is returned, which you can compare to the global `NullObject`. 
 
 ~~~php
-$invalidPrimeNumber = \PrimeNumbers\PrimeNumber::fromNumber(10);
+$invalidPrimeNumber = PrimeNumber::fromNumber(10);
 
 //Check invalid
-if($invalidPrimeNumber == \PrimeNumbers\PrimeNumber::$NULL)
+if($invalidPrimeNumber == PrimeNumber::$NULL)
 {
-    //... 
+    //... your error handling
 }
 ~~~
