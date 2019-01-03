@@ -10,12 +10,12 @@ final class PrimeNumberAggregateTest extends TestCase
         $instance = \PrimeNumbers\PrimeNumberAggregate::until(10);
         $this->assertInstanceOf(\PrimeNumbers\PrimeNumberAggregate::class, $instance);
 
-        $this->assertEquals([
+        $this->assertEquals(\PrimeNumbers\PrimeNumberAggregate::from([
             \PrimeNumbers\PrimeNumber::fromNumber(2),
             \PrimeNumbers\PrimeNumber::fromNumber(3),
             \PrimeNumbers\PrimeNumber::fromNumber(5),
             \PrimeNumbers\PrimeNumber::fromNumber(7)
-        ], $instance->getNumbers());
+        ]), $instance);
     }
 
     public function test_should_remove_and_return_new_instance()
@@ -24,11 +24,11 @@ final class PrimeNumberAggregateTest extends TestCase
         $list = $instance->remove(\PrimeNumbers\PrimeNumber::fromNumber(2));
         $this->assertNotEquals($instance, $list);
 
-        $this->assertEquals([
+        $this->assertEquals(\PrimeNumbers\PrimeNumberAggregate::from([
             \PrimeNumbers\PrimeNumber::fromNumber(3),
             \PrimeNumbers\PrimeNumber::fromNumber(5),
             \PrimeNumbers\PrimeNumber::fromNumber(7)
-        ], $list->getNumbers());
+        ]), $list);
     }
 
     public function test_should_add_item_and_return_new_instance()
@@ -36,13 +36,13 @@ final class PrimeNumberAggregateTest extends TestCase
         $instance = \PrimeNumbers\PrimeNumberAggregate::until(10);
         $list = $instance->with(\PrimeNumbers\PrimeNumber::fromNumber(13));
 
-        $this->assertEquals([
+        $this->assertEquals(\PrimeNumbers\PrimeNumberAggregate::from([
             \PrimeNumbers\PrimeNumber::fromNumber(2),
             \PrimeNumbers\PrimeNumber::fromNumber(3),
             \PrimeNumbers\PrimeNumber::fromNumber(5),
             \PrimeNumbers\PrimeNumber::fromNumber(7),
             \PrimeNumbers\PrimeNumber::fromNumber(13)
-        ], $list->getNumbers());
+        ]), $list);
     }
 
     public function test_should_filter_and_return_new_list()
@@ -53,10 +53,10 @@ final class PrimeNumberAggregateTest extends TestCase
             return ($number->getNumber() < 7);
         });
 
-        $this->assertEquals([
+        $this->assertEquals(\PrimeNumbers\PrimeNumberAggregate::from([
             \PrimeNumbers\PrimeNumber::fromNumber(2),
             \PrimeNumbers\PrimeNumber::fromNumber(3),
-            \PrimeNumbers\PrimeNumber::fromNumber(5),
-        ], $list->getNumbers());
+            \PrimeNumbers\PrimeNumber::fromNumber(5)
+        ]), $list);
     }
 }
