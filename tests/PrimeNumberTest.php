@@ -19,8 +19,6 @@ final class PrimeNumberTest extends TestCase
 
     public function test_should_return_null_object_for_non_prime_number()
     {
-        \PrimeNumbers\PrimeNumber::$NULL = \PrimeNumbers\NullPrimeNumber::invoke();
-
         $this->assertEquals(\PrimeNumbers\PrimeNumber::$NULL, \PrimeNumbers\PrimeNumber::fromNumber(4));
         $this->assertEquals(\PrimeNumbers\PrimeNumber::$NULL, \PrimeNumbers\PrimeNumber::fromNumber(10));
         $this->assertEquals(\PrimeNumbers\PrimeNumber::$NULL, \PrimeNumbers\PrimeNumber::fromNumber(12));

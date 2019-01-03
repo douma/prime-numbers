@@ -5,11 +5,6 @@ use PHPUnit\Framework\TestCase;
 
 final class PrimeNumberAggregateTest extends TestCase
 {
-    public function setUp()
-    {
-        \PrimeNumbers\PrimeNumber::$NULL = \PrimeNumbers\NullPrimeNumber::invoke();
-    }
-
     public function test_should_construct_list_until_without_invalid_primes()
     {
         $instance = \PrimeNumbers\PrimeNumberAggregate::until(10);

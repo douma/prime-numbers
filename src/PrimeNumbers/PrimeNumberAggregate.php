@@ -3,6 +3,8 @@
 namespace PrimeNumbers;
 
 use PrimeNumbers\Contracts\PrimeNumberInterface;
+use Closure;
+use PrimeNumbers\PrimeNumber;
 
 class PrimeNumberAggregate
 {
@@ -14,14 +16,14 @@ class PrimeNumberAggregate
         $instance = new self;
         $result = [];
         for($x=2;$x<=$limit;$x++) {
-            $result[] = \PrimeNumbers\PrimeNumber::fromNumber($x);
+            $result[] = PrimeNumber::fromNumber($x);
         }
         $instance->numbers = $result;
-        $instance = $instance->remove(\PrimeNumbers\PrimeNumber::$NULL);
+        $instance = $instance->remove(PrimeNumber::$NULL);
         return $instance;
     }
 
-    public function filter(\Closure $closure) : self
+    public function filter(Closure $closure) : self
     {
         $clone = clone $this;
         $clone->numbers = array_filter($clone->numbers, $closure);
@@ -35,7 +37,7 @@ class PrimeNumberAggregate
         return $clone;
     }
 
-    public function remove(\PrimeNumbers\Contracts\PrimeNumberInterface $primeNumber) : self
+    public function remove(PrimeNumberInterface $primeNumber) : self
     {
         $clone = clone $this;
         foreach($clone->numbers as $index=>$item) {
