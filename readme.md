@@ -18,7 +18,7 @@ $filtered = $list = $instance->filter(function(PrimeNumberInterface $number)
 }); 
 ~~~
 
-## Prime numbers
+## Single prime number
 
 ~~~php
 $primeNumber = PrimeNumber::fromNumber(3);
