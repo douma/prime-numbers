@@ -100,7 +100,7 @@ $appendInvalid = $list->with(PrimeNumber::fromNumber(12));
 Which is the same as:
 
 ~~~php
-$appended = PrimeNumberAggregate::from([
+$appendInvalid = PrimeNumberAggregate::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(7),
