@@ -93,6 +93,8 @@ if($invalidPrimeNumber == PrimeNumber::$NULL)
 
 ### Removing invalid prime numbers 
 
+We can append an invalid number: 
+
 ~~~php
 $appendInvalid = $list->with(PrimeNumber::fromNumber(12));
 ~~~
