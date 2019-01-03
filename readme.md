@@ -10,35 +10,70 @@ $primeNumber = PrimeNumber::fromNumber(3);
 ## Lists
 
 ~~~php
-$list = PrimeNumberAggregate::until(10);  //2,3,5,7
+$list = PrimeNumberAggregate::until(10);
 ~~~ 
+
+Which is the same as:
+
+~~~php
+$list = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(5),
+    PrimeNumber::fromNumber(7)
+];
+~~~
 
 ### Filter  
 
 ~~~php 
-$filtered = $list->filter(function(PrimeNumberInterface $number) //2,3,5
+$filtered = $list->filter(function(PrimeNumberInterface $number)
 {
     return ($number->getNumber() < 7);
 }); 
 ~~~
 
+Which is the same as:
+
+~~~php
+$filtered = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(5)
+];
+~~~
+
 ### Delete
 
 ~~~php
-$deleted = $list->delete(PrimeNumber::fromNumber(5));  //2,3,7
+$deleted = $list->delete(PrimeNumber::fromNumber(5)); 
+~~~
+
+Which is the same as:
+
+~~~php
+$deleted = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(7),
+];
 ~~~
 
 ### Append 
 
 ~~~php
-$appended = $list->with(PrimeNumber::fromNumber(11));  //2,3,7,11
+$appended = $list->with(PrimeNumber::fromNumber(11)); 
 ~~~
 
-### Removing invalid prime numbers 
+Which is the same as:
 
 ~~~php
-$appendedWithInvalidNumber = $list->with(PrimeNumber::fromNumber(12));
-$filteredInvalidList = $appendedWithInvalidNumber->delete(PrimeNumber::$NULL); 
+$appended = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(7),
+    PrimeNumber::fromNumber(11)
+];
 ~~~
 
 ## Invalid prime numbers
@@ -54,4 +89,35 @@ if($invalidPrimeNumber == PrimeNumber::$NULL)
 {
     //... your error handling
 }
+~~~
+
+### Removing invalid prime numbers 
+
+~~~php
+$appendInvalid = $list->with(PrimeNumber::fromNumber(12));
+~~~
+
+Which is the same as:
+
+~~~php
+$appended = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(7),
+    PrimeNumber::fromNumber(12)
+];
+~~~
+
+~~~php
+$removedInvalid = $appendInvalid->delete(PrimeNumber::$NULL); 
+~~~
+
+Which is the same as:
+
+~~~php
+$removedInvalid = PrimeNumberAggregate::from([
+    PrimeNumber::fromNumber(2),
+    PrimeNumber::fromNumber(3),
+    PrimeNumber::fromNumber(7)
+];
 ~~~
