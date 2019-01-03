@@ -1,15 +1,15 @@
 # Prime Numbers
 
 ~~~php
+use PrimeNumbers\Contracts\PrimeNumberInterface;
+use PrimeNumbers\{PrimeNumber, PrimeNumberAggregate};
+
 $primeNumber = PrimeNumber::fromNumber(3);
 ~~~
 
 ## Lists
 
 ~~~php
-use PrimeNumbers\Contracts\PrimeNumberInterface;
-use PrimeNumbers\{PrimeNumber, PrimeNumberAggregate};
-
 $list = PrimeNumberAggregate::until(10);  //2,3,5,7
 ~~~ 
 
