@@ -10,13 +10,13 @@ $primeNumber = PrimeNumber::fromNumber(3);
 use PrimeNumbers\Contracts\PrimeNumberInterface;
 use PrimeNumbers\{PrimeNumber, PrimeNumberAggregate};
 
-$instance = PrimeNumberAggregate::until(10);  //2,3,5,7
+$list = PrimeNumberAggregate::until(10);  //2,3,5,7
 ~~~ 
 
 ### Filter  
 
 ~~~php 
-$filtered = $list = $instance->filter(function(PrimeNumberInterface $number) //2,3,5
+$filtered = $list->filter(function(PrimeNumberInterface $number) //2,3,5
 {
     return ($number->getNumber() < 7);
 }); 
@@ -25,20 +25,20 @@ $filtered = $list = $instance->filter(function(PrimeNumberInterface $number) //2
 ### Delete
 
 ~~~php
-$deleted = $instance->delete(PrimeNumber::fromNumber(5));  //2,3,7
+$deleted = $list->delete(PrimeNumber::fromNumber(5));  //2,3,7
 ~~~
 
 ### Append 
 
 ~~~php
-$appended = $instance->with(PrimeNumber::fromNumber(11));  //2,3,7,11
+$appended = $list->with(PrimeNumber::fromNumber(11));  //2,3,7,11
 ~~~
 
 ### Removing invalid prime numbers 
 
 ~~~php
-$appendedWithInvalidNumber = $instance->with(PrimeNumber::fromNumber(12));
-$filteredInvalidList = $instance->delete(PrimeNumber::$NULL); 
+$appendedWithInvalidNumber = $list->with(PrimeNumber::fromNumber(12));
+$filteredInvalidList = $appendedWithInvalidNumber->delete(PrimeNumber::$NULL); 
 ~~~
 
 ## Invalid prime numbers
