@@ -65,8 +65,7 @@ class PrimeNumberAggregate implements \ArrayAccess, \Iterator
     {
         array_walk($this->numbers, function(PrimeNumberInterface $primeNumber) use($closure)
         {
-            if($primeNumber !== \PrimeNumbers\PrimeNumber::$NULL)
-            {
+            if($primeNumber !== \PrimeNumbers\PrimeNumber::$NULL) {
                 $closure($primeNumber);
             }
         });
