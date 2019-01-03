@@ -12,13 +12,11 @@ class PrimeNumber implements PrimeNumberInterface
 
     public static function fromNumber(int $number) : PrimeNumberInterface
     {
-        if(!self::$NULL)
-        {
+        if(!self::$NULL) {
             self::$NULL = NullPrimeNumber::invoke();
         }
 
-        if(!self::isPrime($number))
-        {
+        if(!self::isPrime($number)) {
             return self::$NULL;
         }
 
