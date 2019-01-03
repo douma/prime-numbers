@@ -1,0 +1,15 @@
+{
+    "name": "douma/prime-numbers",
+    "authors": [
+        {
+            "name": "Stefan Douma",
+            "email": "douma4@gmail.com"
+        }
+    ],
+    "require": {
+        "phpunit/phpunit": "^7.5"
+    },
+    "autoload": {
+        "psr-4": {"PrimeNumbers\\": "src/PrimeNumbers"}
+    }
+}
