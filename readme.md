@@ -108,8 +108,16 @@ $appendInvalid = PrimeNumberAggregate::from([
 ];
 ~~~
 
+You can remove all invalid prime numbers using a filter or the delete method:
+
 ~~~php
 $removedInvalid = $appendInvalid->delete(PrimeNumber::$NULL); 
+
+//...or
+$removedInvalid = $appendInvalid->filter(function(PrimeNumberInterface $primeNumber)
+{
+   return $primeNumber !== PrimeNumber::$NULL;
+});
 ~~~
 
 Which is the same as:
