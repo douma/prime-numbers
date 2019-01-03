@@ -27,13 +27,10 @@ class PrimeNumber implements PrimeNumberInterface
 
     private static function isPrime(int $num) : bool
     {
-        for($x = 2;$x<$num;$x++) {
-            $result = ($num / $x);
-            if($result == (int) $result) {
-                return false;
-            }
-        }
-        return true;
+        $r1 = $num%2;
+        $r2 = $num%3;
+        $r3 = $num%5;
+        return ($num > 1) &&  (($r1 >= 1) && ($r2 >= 1) && ($r3 >= 1)) || in_array($num, [2,3,5]);
     }
 
     public function getNumber() : int
