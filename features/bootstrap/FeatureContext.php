@@ -40,7 +40,7 @@ class FeatureContext implements Context
     {
         if($this->listTest)
         {
-            $list = \PrimeNumbers\PrimeNumberAggregate::until($this->number);
+            $list = \PrimeNumbers\PrimeNumberManager::until($this->number);
             $result = explode(",", $arg1);
             $listNumbers = [];
 

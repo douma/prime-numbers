@@ -2,7 +2,7 @@
 
 ~~~php
 use PrimeNumbers\Contracts\PrimeNumberInterface;
-use PrimeNumbers\{PrimeNumber, PrimeNumberAggregate};
+use PrimeNumbers\{PrimeNumber, PrimeNumberManager};
 
 $primeNumber = PrimeNumber::fromNumber(3);
 ~~~
@@ -10,13 +10,13 @@ $primeNumber = PrimeNumber::fromNumber(3);
 ## Lists
 
 ~~~php
-$list = PrimeNumberAggregate::until(10);
+$list = PrimeNumberManager::until(10);
 ~~~ 
 
 Which is the same as:
 
 ~~~php
-$list = PrimeNumberAggregate::from([
+$list = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(5),
@@ -36,7 +36,7 @@ $filtered = $list->filter(function(PrimeNumberInterface $number)
 Which is the same as:
 
 ~~~php
-$filtered = PrimeNumberAggregate::from([
+$filtered = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(5)
@@ -52,7 +52,7 @@ $deleted = $list->delete(PrimeNumber::fromNumber(5));
 Which is the same as:
 
 ~~~php
-$deleted = PrimeNumberAggregate::from([
+$deleted = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(7),
@@ -68,7 +68,7 @@ $appended = $list->with(PrimeNumber::fromNumber(11));
 Which is the same as:
 
 ~~~php
-$appended = PrimeNumberAggregate::from([
+$appended = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(7),
@@ -102,7 +102,7 @@ $appendInvalid = $list->with(PrimeNumber::fromNumber(12));
 Which is the same as:
 
 ~~~php
-$appendInvalid = PrimeNumberAggregate::from([
+$appendInvalid = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(7),
@@ -125,7 +125,7 @@ $removedInvalid = $appendInvalid->filter(function(PrimeNumberInterface $primeNum
 Which is the same as:
 
 ~~~php
-$removedInvalid = PrimeNumberAggregate::from([
+$removedInvalid = PrimeNumberManager::from([
     PrimeNumber::fromNumber(2),
     PrimeNumber::fromNumber(3),
     PrimeNumber::fromNumber(7)

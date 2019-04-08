@@ -6,7 +6,7 @@ use PrimeNumbers\Contracts\PrimeNumberInterface;
 use Closure;
 use PrimeNumbers\PrimeNumber;
 
-class PrimeNumberAggregate implements \ArrayAccess, \Iterator
+class PrimeNumberManager implements \ArrayAccess, \Iterator
 {
     private $numbers = [];
     private function __construct() {}
